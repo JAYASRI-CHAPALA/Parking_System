@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} Edit ParkingLot
+{% endblock title%}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="edit-lot-header text-center">Edit Parking Lot</h1>
+            <span class="color:#cd6250">
+                <hr>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-end p-5">
+
+
+            <form method="post">
+                {{ form.hidden_tag()}}
+
+                {{form.prime_location_name.label(class="editparkinglot-label")}}
+                {{form.prime_location_name(class="editparkinglot-input", readonly=True)}} <br>
+                {{form.city.label(class="editparkinglot-label")}}
+                {{form.city(class="editparkinglot-input", readonly=True)}} <br>
+                {{form.state.label(class="editparkinglot-label")}}
+                {{form.state(class="editparkinglot-input", readonly=True)}} <br>
+                {{form.pincode.label(class="editparkinglot-label")}}
+                {{form.pincode(class="editparkinglot-input", readonly=True)}} <br>
+                {{form.address.label(class="editparkinglot-label")}}
+                {{form.address(class="editparkinglot-input", style="width:60%")}} <br>
+                {{form.price.label(class="editparkinglot-label")}}
+                {{form.price(class="editparkinglot-input")}} <br>
+                {{form.maximum_number_of_spots.label(class="editparkinglot-label")}}
+                {{form.maximum_number_of_spots(class="editparkinglot-input")}}
+                <br>
+                {{form.submit(class="btn btn-success btn-sm")}}
+            </form>
+
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="/static/images/addparkingslot.svg" alt="add-lot-bg" height="350px">
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

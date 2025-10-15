@@ -1,0 +1,27 @@
+.add-lot-header {
+    margin-top: 15px;
+    color: #6f3a8a;
+    font-weight: bold;
+}
+
+.addparkinglot-label {
+    color: #f46523;
+    font-weight: bold;
+}
+
+.addparkinglot-input {
+    border: none;
+    border-bottom: 2px solid green;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    width: 30%;
+    padding: 5px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.addparkinglot-input:focus {
+    outline: none;
+    border-bottom: 2px solid darkgreen;
+}

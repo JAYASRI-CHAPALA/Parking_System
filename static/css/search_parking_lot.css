@@ -1,0 +1,90 @@
+.search-lot-hero {
+    background: linear-gradient(120deg, #43bde2 0%, #bd43e2 100%);
+    border-radius: 18px 18px 0 0;
+    color: #fff;
+    padding: 36px 0 24px 0;
+    text-align: center;
+    margin-bottom: 0;
+    box-shadow: 0 4px 24px rgba(67, 189, 226, 0.08);
+}
+
+.search-lot-hero h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.search-lot-form {
+    background: #fff;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 2px 8px rgba(189, 67, 226, 0.04);
+    padding: 32px 24px 18px 24px;
+    margin-bottom: 32px;
+    margin-top: -18px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-lot-form label {
+    font-weight: 600;
+    color: #43bde2;
+    margin-bottom: 4px;
+}
+
+.search-lot-form .form-control {
+    border-radius: 10px;
+    border: 1.5px solid #43bde2;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    box-shadow: none;
+}
+
+.search-lot-form .btn-info {
+    border-radius: 10px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #43bde2 0%, #bd43e2 100%);
+    border: none;
+    color: #fff;
+    padding: 8px 32px;
+    transition: background 0.3s;
+}
+
+.search-lot-form .btn-info:hover {
+    background: linear-gradient(90deg, #bd43e2 0%, #43bde2 100%);
+    color: #fff;
+}
+
+.parking-card {
+    border-left: 4px solid #1b7b1c;
+    border-radius: 10px green;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.parking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.15);
+}
+
+
+.price-tag {
+    font-weight: bold;
+    color: #28a745;
+    background-color: #e6ffe6;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    z-index: 10;
+    transform: rotate(30deg);
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.price-tag:hover {
+    transform: rotate(30deg) scale(1.2);
+}
+
+
+

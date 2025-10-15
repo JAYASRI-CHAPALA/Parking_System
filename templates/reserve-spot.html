@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %} Reserve ParkingLot
+{% endblock title%}
+{% block body %}
+<style>
+    .underline-input {
+        border: none;
+        border-bottom: 2px solid green;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 15px;
+        color: #000;
+    }
+
+    .underline-input:focus {
+        outline: none;
+        border-bottom: 2px solid darkgreen;
+    }
+</style>
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="fw-bold" id="reserve-header">Reserve Spot</h1>
+            <span class="text-danger"><hr></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/static/images/reserveparking.png" alt="Reserve Spot png" height="400px">
+        </div>
+        <div class="col-md-7 align-items-center reserve-form">
+            <form method="post">
+                <h3 id="reserve-title">Spot Details</h3>
+                {{ form.hidden_tag() }}
+                {{ form.spot_id.label() }}
+                {{ form.spot_id(class="underline-input",disabled=True) }} <br>
+                {{ form.parkingcost.label() }}
+                {{ form.parkingcost(class="underline-input",disabled=True) }} <br>
+                {{ form.vehicle_number.label() }}
+                {{ form.vehicle_number(class="underline-input") }}
+                {{ form.submit(class="btn btn-success btn btn-sm") }}
+                <a href="/search-parking-lot" class="btn btn-outline-secondary btn btn-sm">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

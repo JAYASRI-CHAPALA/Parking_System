@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %} Release Spot {% endblock title %}
+
+{% block body %}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-12 mt-5 releasespot-header">
+            <h2 class="text-center">Relase Spot </h2>
+            <hr style="width: 40% ; margin: 0 auto;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-end">
+            <form method="post">
+                {{ form.hidden_tag() }}
+
+                {{form.spot_id.label(class="relasespot-label")}}
+                {{ form.spot_id(class="edituser-input")}} <br>
+                {{form.parking_time.label(class="relasespot-label")}}
+                {{ form.parking_time(class="edituser-input")}} <br>
+                {{form.leaving_time.label(class="relasespot-label")}}
+                {{ form.leaving_time(class="edituser-input")}} <br>
+                {{form.total_cost.label(class="relasespot-label")}}
+                {{ form.total_cost(class="edituser-input")}} <br> <br>
+                
+                <a href="/user-dashboard" class="btn btn-outline-secondary rounded-pill btn-sm me-2">Cancel</a>
+                <button type="button" class="release-button" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                    Release Spot
+                </button>
+                <!-- Bootstrap Modal -->
+                <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title text-success fw-bold" id="paymentModalLabel" ">Confirm Payment</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body text-center">
+                                <p class="fw-bold text-success">Reservation ID: <span class="text-dark">{{
+                                        reservation.id }}</span></p>
+                                <p class="fw-bold text-success">Amount to Pay: <span class="text-dark">₹{{
+                                        form.total_cost.data }}</span></p>
+
+                                <p class="fw-semibold">Scan this QR to pay:</p>
+                                <img src="{{ url_for('static', filename='images/scanme.jpg') }}" alt="QR Code"
+                                    width="200px">
+
+                                <p class="text-muted mt-3">After payment, click the confirm button below.</p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    data-bs-dismiss="modal">Cancel</button>
+                                {{form.submit( class="btn btn-success btn-sm")}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <img src="/static/images/releasespot.svg" alt="" height="250px">
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

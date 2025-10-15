@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Edit User{% endblock title %}
+
+
+{% block body %}
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-success">Edit User</h2>
+        </div>
+    </div>
+    <div class="row d-flex text-end">
+        <div class="col-md-6">
+            <form method="post">
+                {{ form.hidden_tag() }}
+
+                {{form.fullname.label(class="edituser-label")}} 
+                {{ form.fullname(class="edituser-input")}} <br>
+                {{form.email.label(class="edituser-label")}}
+                {{ form.email(class="edituser-input")}}<br>
+                {{form.phone.label(class="edituser-label")}}
+                {{ form.phone(class="edituser-input")}}<br>
+                {{form.pincode.label(class="edituser-label")}}
+                {{ form.pincode(class="edituser-input")}}<br>
+                {{form.address.label(class="edituser-label")}}
+                {{ form.address(class="edituser-input")}}<br>
+
+                {{ form.submit( class="btn btn-success btn-sm")}}
+                <a href="/user-dashboard" class="btn btn-success btn-sm">Cancel</a>
+            </form>
+        </div>
+        <div class="col-md-6 text-start">
+            <img src="/static/images/editdetails.avif" alt="Edit Details Image" height="350px">
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

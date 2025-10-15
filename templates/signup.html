@@ -1,0 +1,78 @@
+{% extends "base.html" %}'
+{% block title %} SignUp
+{% endblock title%}
+{% block body %}
+
+
+
+<div class="container-fluid">
+    <div class="row full-height-row-signup">
+        <div class="col-md-7 p-5">
+            <p>Welcome, <strong>Chief !!</strong></p>
+            <p>It only takes a few seconds to create your account</p>
+            <div class="mb-2">
+                <hr>
+                <form method="post">
+                    {{ form.hidden_tag() }}
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="fullname">{{ form.fullname.label.text }}</label>
+                            {{ form.fullname(class="form-control") }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">{{ form.email.label.text }}</label>
+                            {{ form.email(class="form-control") }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="phone">{{ form.phone.label.text }}</label>
+                            {{ form.phone(class="form-control") }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="pincode">{{ form.pincode.label.text }}</label>
+                            {{ form.pincode(class="form-control") }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label for="address">{{ form.address.label.text }}</label>
+                            {{ form.address(class="form-control") }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="password">{{ form.password.label.text }}</label>
+                            {{ form.password(class="form-control") }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="confirm_password">{{ form.confirm_password.label.text }}</label>
+                            {{ form.confirm_password(class="form-control") }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col d-flex justify-content-between align-items-center mt-3">
+                            <p class="text-center mt-3">
+                                Already have an account?
+                                <a href="{{ url_for('login') }}">Login</a>
+                            </p>
+                            {{ form.submit(class="btn btn-outline-primary btn-sm") }}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-5 bg-col-signup">
+            <div>
+                <h2>Welcome to ParkEase</h2>
+                <p>Your hassle-free parking solution. Find, reserve, and manage your parking spot with ease.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

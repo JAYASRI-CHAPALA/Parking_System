@@ -1,0 +1,25 @@
+.relasespot-label {
+    color: #29d8ba;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.releasespot-header {
+    color: #3e6061;
+}
+
+.release-button {
+    background-color: #29d8ba;
+    color: #fff;
+    border: 1px solid #29d8ba;
+    border-radius: 20px;
+    padding: 3px 6px;
+    transition: all 0.3s ease;
+
+}
+
+.release-button:hover {
+    background-color: #fff;
+    border: 1px solid #29d8ba;
+    color: #29d8ba;
+}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %} Add ParkingLot
+{% endblock title%}
+{% block body %}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="add-lot-header text-center">Add Parking Lot</h1>
+            <span class="color:#cd6250">
+                <hr>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-end p-5">
+
+
+            <form method="post">
+                {{ form.hidden_tag()}}
+
+                {{form.prime_location_name.label(class="addparkinglot-label")}}
+                {{form.prime_location_name(class="addparkinglot-input")}} <br>
+                {{form.city.label(class="addparkinglot-label")}}
+                {{form.city(class="addparkinglot-input")}} <br>
+                {{form.state.label(class="addparkinglot-label")}}
+                {{form.state(class="addparkinglot-input")}} <br>
+                {{form.pincode.label(class="addparkinglot-label")}}
+                {{form.pincode(class="addparkinglot-input")}} <br>
+                {{form.address.label(class="addparkinglot-label")}}
+                {{form.address(class="addparkinglot-input", style="width:60%")}} <br>
+                {{form.price.label(class="addparkinglot-label")}}
+                {{form.price(class="addparkinglot-input")}} <br>
+                {{form.maximum_number_of_spots.label(class="addparkinglot-label")}}
+                {{form.maximum_number_of_spots(class="addparkinglot-input")}}
+                <br>
+                {{form.submit(class="btn btn-success btn-sm")}}
+            </form>
+
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="/static/images/parkzone.jpg" alt="add-lot-bg" width="500px">
+            <img src="/static/images/18737136_6022193.jpg" alt="" height="200px">
+        </div>
+    </div>
+</div>
+{% endblock body %}

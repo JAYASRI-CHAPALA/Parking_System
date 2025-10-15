@@ -1,0 +1,316 @@
+.sticky-sidebar {
+    position: sticky;
+    top: 20px;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.nav-pills .nav-link {
+    border-radius: 8px;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #a96aad;
+    /* background-color: #fff; */
+    /* color: white;
+    background-color: green;
+    */
+}
+
+.nav-pills .nav-link:hover {
+    color: #95229d;
+}
+
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #95229d;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #95229d !important;
+    color: #fff !important;
+}
+
+/* 
+
+.tab-pane {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    min-height: 300px;
+} */
+
+.modal-backdrop {
+    display: none !important;
+}
+
+.modal {
+    background: transparent !important;
+}
+
+
+.dashboard-summary-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.dashboard-summary-card:hover {
+    transform: translateY(-4px);
+}
+
+.dashboard-summary-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #8c229e;
+}
+
+.dashboard-summary-card .value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.dashboard-summary-card .label {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.dashboard-header {
+    background: #f1f4f9;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+}
+
+table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+
+.summary-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #4338ca;
+    letter-spacing: 0.5px;
+}
+
+.clock {
+    font-family: 'Fira Mono', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    display: inline-block;
+}
+
+.admin-summary-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.admin-summary-card {
+    flex: 1 1 300px;
+    background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+    border-radius: 20px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(30, 64, 175, 0.1);
+    transition: all 0.3s ease;
+}
+
+.admin-summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 36px rgba(30, 64, 175, 0.2);
+}
+
+.admin-summary-card h4 {
+    color: #ff4646;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    z-index: 1;
+    position: relative;
+}
+
+.admin-summary-stat {
+    font-weight: 700;
+    color: #a731d2;
+    margin-left: 8px;
+}
+
+.summary-heading {
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.summary-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 1;
+    position: relative;
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.metric-item:hover {
+    background-color: #f9fafb;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.label {
+    font-weight: 500;
+    color: #4b5563;
+    font-size: 1rem;
+}
+
+.value {
+    font-weight: 700;
+    color: #10b981;
+    font-size: 1.1rem;
+}
+
+
+
+
+.lots-view-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #bd43e2;
+    margin-bottom: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.lot-card {
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(67, 189, 226, 0.10);
+    background: linear-gradient(120deg, #fff 60%, #f3e6fa 100%);
+    margin-bottom: 28px;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lot-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(67, 189, 226, 0.18);
+}
+
+.lot-card h5 {
+    color: #43bde2;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.lot-card .row {
+    margin-top: 10px;
+}
+
+.spot-btn-available {
+    background: linear-gradient(90deg, #43e2a0 0%, #43bde2 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 6px;
+    transition: background 0.3s;
+}
+
+.spot-btn-available:hover {
+    background: linear-gradient(90deg, #43bde2 0%, #43e2a0 100%);
+    color: #fff;
+}
+
+.spot-btn-occupied {
+    background: #e2e2e2;
+    color: #bd43e2;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 6px;
+    cursor: not-allowed;
+}
+
+.lot-card {
+    border-bottom: 4px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+.lot-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+}
+
+.spot-btn-available {
+    background-color: #28a745;
+    color: white;
+    width: 35px;
+}
+
+.spot-btn-occupied {
+    background-color: #dc3545;
+    color: white;
+    width: 35px;
+}
+
+.lot-actions {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.lot-actions .btn {
+    flex-grow: 1;
+}
+
+
+.spot-btn-occupie {
+    background: linear-gradient(45deg, #dc3545 30%, #43bde2 70%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 6px;
+    transition: background 0.3s;
+}
+
+.spot-btn-occupie:hover {
+    background: linear-gradient(90deg, #43bde2 0%, #e24348 100%);
+    color: #fff;
+}

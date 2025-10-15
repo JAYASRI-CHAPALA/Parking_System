@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %} Home
+{% endblock title%}
+{% block body %}
+
+<div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <h4 class="hero-title">Welcome <span>ParkEase</span></h4>
+        <p class="hero-desc">Find smart and secure parking in just a few clicks. No more stress, just ParkEase!</p>
+        <a href="{{url_for('searchlot')}}" class="hero-btn">Search Spot</a>
+        <div class="hero-images mt-4">
+            <img src="/static/images/parking_lot.png" alt="Parking Lot" class="hero-img-main">
+            <img src="/static/images/transport-car.png" alt="Car" class="hero-img-side">
+        </div>
+    </div>
+</div>
+
+<div class="container feature-section">
+    <div class="row mb-4 text-center">
+        <h1 class="fw-bold">Why Use ParkEase?</h1>
+    </div>
+    <div class="row feature-row align-items-center mb-5">
+        <div class="col-md-6 text-center">
+            <img src="/static/images/vehicle-in-out.svg" class="img-fluid" alt="Easy In & Out">
+        </div>
+        <div class="col-md-6 text-left">
+            <h5 class="feature-title">Easy In & Out</h5>
+            <p class="feature-desc">Enjoy seamless entry and exit with smart automation.<br>Reduce wait time and get to
+                your destination faster.</p>
+        </div>
+    </div>
+    <div class="row feature-row align-items-center mb-5 flex-md-row-reverse">
+        <div class="col-md-6 text-left">
+            <img src="/static/images/fuel_filling.png" class="img-fluid" alt="Fuel at Spot">
+        </div>
+        <div class="col-md-6 text-center">
+            <h5 class="feature-title">Fuel at Spot</h5>
+            <p class="feature-desc">Fuel up your vehicle while it's parked.<br>No need to search for gas stations
+                anymore.</p>
+        </div>
+    </div>
+    <div class="row feature-row align-items-center mb-5">
+        <div class="col-md-6 text-center">
+            <img src="/static/images/secure-online-payment-transactions-ensuring-business-continuity-uuid_31965-617634.jpg"
+                class="img-fluid" alt="Smart Payment">
+        </div>
+        <div class="col-md-6 text-left">
+            <h5 class="feature-title">Smart Payment Integration</h5>
+            <p class="feature-desc">Pay effortlessly through UPI, cards, or wallets.<br>No need for cash or paper
+                tickets.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-around brand-section mb-5">
+    <i class="fab fa-google icon-tag" title="Google Maps"></i>
+    <i class="fab fa-amazon-pay icon-tag" title="Amazon Pay"></i>
+    <i class="fas fa-gas-pump icon-tag" title="Shell"></i>
+    <i class="fab fa-uber icon-tag" title="Uber"></i>
+    <i class="fas fa-bolt icon-tag" title="Tata Power EZ Charge (EV)"></i>
+    <i class="fas fa-university icon-tag" title="Axis Bank"></i>
+</div>
+
+<div class="container info-cards">
+    <div class="info-card">
+        <i class="fas fa-credit-card text-primary"></i>
+        <h5>Cashless Payments</h5>
+        <p>Seamless digital payment options including UPI, cards, and wallets.</p>
+    </div>
+    <div class="info-card">
+        <i class="fas fa-headset text-success"></i>
+        <h5>24/7 Customer Support</h5>
+        <p>Reach our support team anytime for help or emergency assistance.</p>
+    </div>
+    <div class="info-card">
+        <i class="bi bi-shield-lock-fill text-info"></i>
+        <h5>Safe & Secure</h5>
+        <p>Surveillance to ensure complete protection of your vehicle.</p>
+    </div>
+</div>
+
+
+{% endblock body %}

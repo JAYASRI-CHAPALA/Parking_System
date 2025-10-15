@@ -1,0 +1,414 @@
+{% extends "base.html" %}
+{% block title %} User Dashboard
+{% endblock title%}
+{% block body %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sticky-sidebar p-5">
+            <ul class="nav nav-pills flex-column justify-content-center mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all"
+                        type="button" role="tab" aria-controls="pills-all" aria-selected="true">Dashboard</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-userreservations-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-userreservations" type="button" role="tab"
+                        aria-controls="pills-userreservations" aria-selected="false">My Bookings</button>
+                </li>
+
+            </ul>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm">LogOut <i
+                    class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+        <div class="col-md-10">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab"
+                    tabindex="0">
+                    <div class="container my-4">
+                        <div class="row dashboard-header d-flex justify-content-between align-items-center">
+                            <div class="col-md-12">
+                                <p class="mb-0 fw-semibold text-success">
+                                    Welcome <span class="fw-bold">{{ current_user.fullname | capitalize}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt-5">
+                        <div class="row mb-3">
+                            <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                <h3 class="mb-0 text-info fw-semibold">My Booking Spots</h3>
+                                <a href="{{ url_for('searchlot')}}" class="btn btn-outline-success btn-sm">Book Now</a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% if current_bookings %}
+                                <div class="table-responsive">
+                                    <table
+                                        class="table table-bordered table-hover align-middle text-center shadow-sm bg-white">
+                                        <thead class="table-primary">
+                                            <tr>
+                                                <th>Reservation ID</th>
+                                                <th>Entry Time</th>
+                                                <th>Vehicle Number</th>
+                                                <th>Price /hr</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for booking in current_bookings %}
+                                            <tr>
+                                                <td>{{ booking.id }}</td>
+                                                <td>{{ booking.parking_timestamp.strftime('%d %b %Y, %I:%M %p') }}</td>
+                                                <td>{{ booking.vehicle_number }}</td>
+                                                <td>₹{{ booking.spot.parking_lot.price }}</td>
+                                                <td>
+                                                    <a href="{{ url_for('releasespot', res_id=booking.id, slot_id=booking.spot_id) }}"
+                                                        class="btn btn-sm btn-outline-warning rounded-pill px-3">
+                                                        Release
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {% else %}
+                                <div class="text-center text-muted py-5 border rounded bg-white shadow-sm">
+                                    <span class="fw-bold">You have no active reservations.</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="container summary-container mt-4">
+                        <div class="admin-summary-row">
+                            <div class="admin-summary-card">
+                                <h4 class="summary-heading">Reservation Summary</h4>
+                                <div class="summary-metric">
+                                    <div class="metric-item">
+                                        <span class="label">Total Reservations</span>
+                                        <span class="value">{{ total_reservations }}</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="label">Active Bookings</span>
+                                        <span class="value">{{ active_bookings }}</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="label">Completed Bookings</span>
+                                        <span class="value">{{ completed_bookings }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="admin-summary-card">
+                                <h4 class="summary-heading">Payment Summary</h4>
+                                <div class="summary-metric">
+                                    <div class="metric-item">
+                                        <span class="label">Total Amount Paid</span>
+                                        <span class="value">{{ total_amout_paid }} Rs</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="label">Average Amount Paid</span>
+                                        <span class="value">{{ avg_amount_paid }} Rs</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="label">Highest Amount Paid</span>
+                                        <span class="value">{{ max_amout_paid }} Rs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="admin-summary-card">
+                                <h4 class="summary-heading">Parking Insights</h4>
+                                <div class="summary-metric">
+                                    <div class="metric-item">
+                                        <span class="label">Total Time</span>
+                                        <span class="value">{{ total_parking_time }} Hrs</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="label">Avg Duration</span>
+                                        <span class="value">{{ avg_parking_duration }} Hrs</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="label">Longest Duration</span>
+                                        <span class="value">{{ longest_parking_duration }} Hrs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="pills-profile" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
+                    <div class="container mt-5 mb-4">
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-md-10 col-lg-8">
+                                <div class="card shadow-lg border-0 rounded-4 bg-white">
+                                    <div class="card-body p-4">
+
+                                        <!-- Profile Heading -->
+                                        <div class="text-center mb-4">
+                                            <div class="avatar bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center shadow"
+                                                style="width: 80px; height: 80px; font-size: 30px;">
+                                                {{ current_user.fullname[0] }}
+                                            </div>
+                                            <h4 class="mt-3 mb-0 fw-bold">{{ current_user.fullname }}</h4>
+                                            <span class="text-muted text-capitalize">{{ current_user.role }}</span>
+                                        </div>
+
+                                        <hr class="my-4">
+
+                                        <!-- Profile Info Grid -->
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <div class="border rounded-3 p-3 bg-light">
+                                                    <small class="text-muted">Email</small>
+                                                    <div class="fw-semibold text-dark">{{ current_user.email }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="border rounded-3 p-3 bg-light">
+                                                    <small class="text-muted">Phone</small>
+                                                    <div class="fw-semibold text-dark">{{ current_user.phone }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="border rounded-3 p-3 bg-light">
+                                                    <small class="text-muted">Address</small>
+                                                    <div class="fw-semibold text-dark">{{ current_user.address }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="border rounded-3 p-3 bg-light">
+                                                    <small class="text-muted">Pincode</small>
+                                                    <div class="fw-semibold text-dark">{{ current_user.pincode }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Button -->
+                                        <div class="text-end mt-4">
+                                            <a href="{{ url_for('passwordupdate', user_id = current_user.id )}}"
+                                                class="btn btn-outline-warning btn-sm px-4 rounded-4 shadow-sm">Update
+                                                Password</a>
+                                            <a href="{{ url_for('edituser', user_id=current_user.id) }}"
+                                                class="btn btn-info btn-sm px-4 rounded-pill shadow-sm">
+                                                Edit Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="tab-pane" id="pills-userreservations" role="tabpanel" aria-labelledby="pills-all-tab"
+                    tabindex="0">
+                    <div class="container py-5">
+                        <!-- Current Reservations -->
+                        <div class="row justify-content-center mb-5">
+                            <div class="col-lg-10">
+                                <div class="card border-0 shadow rounded-4">
+                                    <div class="card-body p-5">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <div>
+                                                <h3 class="fw-bold mb-1 text-primary">Current Reservations</h3>
+                                                <p class="text-muted mb-0">View and manage your active parking slots.
+                                                </p>
+                                            </div>
+                                            <i class="bi bi-clock-history text-primary fs-1"></i>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless align-middle text-center mb-0">
+                                                <thead class="bg-light text-muted border-bottom">
+                                                    <tr>
+                                                        <th>Reservation ID</th>
+                                                        <th>Vehicle Number</th>
+                                                        <th>Parking Time</th>
+                                                        <th>Payment</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-dark">
+                                                    {% for reservation in current_bookings %}
+                                                    <tr class="border-bottom">
+                                                        <td class="fw-semibold">{{ reservation.id }}</td>
+                                                        <td>{{ reservation.vehicle_number }}</td>
+                                                        <td>{{ reservation.parking_timestamp.strftime('%d %b %Y, %I:%M
+                                                            %p') }}</td>
+                                                        <td>
+                                                            {% if reservation.payment_status == 'Success' %}
+                                                            <span
+                                                                class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Success</span>
+                                                            {% elif reservation.payment_status == 'Pending' %}
+                                                            <span
+                                                                class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
+                                                            {% else %}
+                                                            <span
+                                                                class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill">Failed</span>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+
+                                                            <a href="{{ url_for('releasespot', res_id=reservation.id) }}"
+                                                                class="btn btn-outline-danger btn-sm rounded-pill px-4">
+                                                                Release
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    {% else %}
+                                                    <tr>
+                                                        <td colspan="5" class="text-muted py-4">No active reservations
+                                                            found.</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🟢 Reservation History -->
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <div class="card border-0 shadow rounded-4">
+                                    <div class="card-body p-5">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <div>
+                                                <h3 class="fw-bold mb-1 text-primary">Reservation History</h3>
+                                                <p class="text-muted mb-0">Your previous booking records and payments.
+                                                </p>
+                                            </div>
+                                            <i class="bi bi-journal-bookmark-fill text-primary fs-1"></i>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless align-middle text-center mb-0">
+                                                <thead class="bg-light text-muted border-bottom">
+                                                    <tr>
+                                                        <th>Reservation ID</th>
+                                                        <th>Vehicle Number</th>
+                                                        <th>Parking Time</th>
+                                                        <th>Status</th>
+                                                        <th>Amount Paid</th>
+                                                        <th>Rating</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-dark">
+                                                    {% for reservation in booking_history %}
+                                                    <tr class="border-bottom">
+                                                        <td class="fw-semibold">{{ reservation.id }}</td>
+                                                        <td>{{ reservation.vehicle_number }}</td>
+                                                        <td>{{ reservation.parking_timestamp.strftime('%d %b %Y, %I:%M
+                                                            %p') }}</td>
+                                                        <td>
+                                                            <span
+                                                                class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">
+                                                                {{ reservation.payment_status }}
+                                                            </span>
+                                                        </td>
+                                                        <td>₹{{ reservation.amount_paid }}</td>
+                                                        <td>
+                                                            {% if reservation.is_rated %}
+                                                            <span class="badge bg-success">Rated Successfully</span>
+                                                            {% else %}
+                                                            <button type="button"
+                                                                class="btn btn-outline-warning btn-sm rounded-pill px-4"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#ratingModal-{{ reservation.id }}">
+                                                                Rating
+                                                            </button>
+
+                                                            {% endif %}
+
+
+                                                        </td>
+                                                        <!-- Bootstrap Modal -->
+                                                        <div class="modal fade" id="ratingModal-{{ reservation.id }}"
+                                                            tabindex="-1"
+                                                            aria-labelledby="ratingModalLabel-{{ reservation.id }}"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title text-warning fw-bold"
+                                                                            id="ratingModalLabel-{{ reservation.id }}">
+                                                                            Rating</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">
+                                                                        <div class="btn-group btn-group-toggle"
+                                                                            data-toggle="buttons">
+                                                                            <a href="{{ url_for('rating', res_id=reservation.id, rating=1) }}"
+                                                                                class="btn btn-outline-warning">★</a>
+                                                                            <a href="{{ url_for('rating', res_id=reservation.id, rating=2) }}"
+                                                                                class="btn btn-outline-warning">★★</a>
+                                                                            <a href="{{ url_for('rating', res_id=reservation.id, rating=3) }}"
+                                                                                class="btn btn-outline-warning">★★★</a>
+                                                                            <a href="{{ url_for('rating', res_id=reservation.id, rating=4) }}"
+                                                                                class="btn btn-outline-warning">★★★★</a>
+                                                                            <a href="{{ url_for('rating', res_id=reservation.id, rating=5) }}"
+                                                                                class="btn btn-outline-warning">★★★★★</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-outline-secondary btn-sm"
+                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </tr>
+                                                    {% else %}
+                                                    <tr>
+                                                        <td colspan="5" class="text-muted py-4">No historical
+                                                            reservations found.</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

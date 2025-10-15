@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %} Search ParkingLot
+{% endblock title%}
+{% block body %}
+
+
+<div class="search-lot-hero">
+    <h3>Find Your Parking Lot</h3>
+    <p style="font-size:1.1rem;">Search for available parking lots by location or pincode and reserve your spot
+        instantly!</p>
+</div>
+
+<div class="container search-lot-form">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <label>{{ form.location.label() }}</label>
+        {{ form.location(class="form-control d-inline w-50 mb-2") }}
+        {{ form.submit(class_='btn btn-info btn-sm ms-2') }}
+    </form>
+</div>
+
+{% if parkingLots %}
+
+<div class="container mt-4">
+    <div class="row">
+        {% for lot in parkingLots %}
+        <div class="col-md-4 mb-4">
+            <div class="card parking-card">
+                <div class="card-body">
+                    <h5 class="card-title mb-3 text-muted fw-semibold">📍 {{ lot.prime_location_name }}</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="card-subtitle text-warning">🅿️ ID: {{ lot.id }}</h6>
+                        <div class="price-tag">₹{{ lot.price }}/hr</div>
+                    </div>
+                    <p class="card-text text-muted fw-semibold">🟢 Available: <span class="text-success">{{ count_by_lot_id[lot.id][1] | length }}</span> / <span class="text-danger"> {{ count_by_lot_id[lot.id][0] }}</span></p>
+                    {% if count_by_lot_id[lot.id][1] | length > 0  %}
+                    <a href="{{ url_for('reservespot', lot_id=lot.id , spot_id=count_by_lot_id[lot.id][1][0]) }}" class="btn btn-success btn-sm">Book Now</a>
+                    {% else %}
+                    <a href="" class="book-btn">Not Available</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-12 text-center">
+        <img src="/static/images/searchlocation.avif" alt="search location" height="300px">
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock body %}

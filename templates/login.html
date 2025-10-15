@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+{% block title %} LogIn
+{% endblock title%}
+{% block body %}
+
+
+
+
+<div class="container-fluid">
+    <div class="row full-height-row-login">
+        <div class="col-md-4 login-bg-col">
+            <div>
+                <h2>Welcome to ParkEase</h2>
+
+                <p>Your hassle-free parking solution. Find, reserve, and manage your parking spot with ease.</p>
+            </div>
+        </div>
+        <div class="col-md-8 padding-login">
+            <div class="row padding-login">
+                <div class="col-md-8">
+                    <h4>ParkEase</h4>
+                    <p>Welcome back, Chief</p>
+                    <p>Please sign in to your account.</p>
+                    <p>No account? <a href="{{ url_for('signup') }}">Sign up now</a></p>
+                </div>
+                <div class="col-md-4 ">
+                    <img src="/static/images/login.png" alt="LogIn image" class="text-start" width="150px"
+                        class="loginImage">
+                </div>
+            </div>
+            <div class="row padding-login-form">
+                <div class="col-md-12">
+                    <hr>
+                    <form method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="email">{{ form.email.label.text }}</label>
+                                {{ form.email(class="form-control") }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password">{{ form.password.label.text }}</label>
+                                {{ form.password(class="form-control") }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col text-end">
+                                <a href="#">Forgot Password?</a>
+                                {{ form.submit(class="btn btn-success btn-sm ms-2") }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
